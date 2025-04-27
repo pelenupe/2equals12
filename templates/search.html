@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Explore: {{ tag }} | 2 Equals 12{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-16">
+  <div class="max-w-2xl w-full">
+    <h1 class="text-3xl monoton text-green-400 mb-6">Topic: {{ tag }}</h1>
+    <div class="text-lg leading-relaxed space-y-4">
+      {{ ai_response | safe }}
+    </div>
+    <div class="mt-6">
+      <a href="/" class="text-sm text-green-400 underline">← Back to today's fact</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

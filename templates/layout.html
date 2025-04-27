@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <!-- Viewport Meta Tag to Make Site Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>{% block title %}2 Equals 12{% endblock %}</title>
+  
+    <!-- Load TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+    <!-- Load Google Fonts: Monoton for headers, Oswald for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+  
+    <!-- Custom Stylesheet (optional overrides) -->
+    <link href="/static/css/styles.css" rel="stylesheet">
+
+  </head>
+  
+  <body class="text-white min-h-screen flex flex-col relative">
+    <!-- Responsive Sticky Nav -->
+    <nav id="main-nav" class="sticky top-0 w-full flex justify-between items-center px-6 py-4 z-50 transition-all duration-500 bg-transparent">
+      <div class="flex items-center gap-2">
+        <img src="/static/img/logo.svg" alt="2 Equals 12" class="h-10">
+      </div>
+      <div id="nav-links" class="hidden md:flex gap-6 text-sm uppercase font-semibold text-white transition-all duration-500">
+        <a href="/" class="hover:underline">Home</a>
+        <a href="/collections" class="hover:underline">Collections</a>
+        <a href="/about" class="hover:underline">About</a>
+      </div>
+      <div class="md:hidden">
+        <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+          <div class="flex flex-col gap-1">
+            <div class="w-6 h-0.5 bg-black"></div>
+            <div class="w-4 h-0.5 bg-black"></div>
+            <div class="w-5 h-0.5 bg-black"></div>
+          </div>
+        </button>
+      </div>
+    </nav> 
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="md:hidden hidden px-6 py-4 space-y-2 bg-black bg-opacity-95 absolute top-16 left-0 right-0 z-40">
+      <a href="/" class="block text-sm uppercase font-semibold">Home</a>
+      <a href="/collections" class="block text-sm uppercase font-semibold">Collections</a>
+      <a href="/about" class="block text-sm uppercase font-semibold">About</a>
+    </div>
+    {% block content %}{% endblock %}
+    <footer class="w-full text-center py-6">
+     <p>© {{ current_year }} Tchad Blair, LLC. All rights reserved.</p> 
+    </footer>
+    <script>
+      const nav = document.getElementById('main-nav');
+      const navLinks = document.getElementById('nav-links');
+    
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          nav.classList.remove('bg-transparent');
+          nav.classList.add('bg-white', 'bg-opacity-90', 'shadow-md');
+          navLinks.classList.remove('text-white');
+          navLinks.classList.add('text-black');
+        } else {
+          nav.classList.add('bg-transparent');
+          nav.classList.remove('bg-white', 'bg-opacity-90', 'shadow-md');
+          navLinks.classList.add('text-white');
+          navLinks.classList.remove('text-black');
+        }
+      });
+    </script>
+    
+  </body>
+</html>

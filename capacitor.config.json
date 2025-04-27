@@ -1,0 +1,10 @@
+{
+  "appId": "com.twoequals.twelve",
+  "appName": "2Equals12",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
