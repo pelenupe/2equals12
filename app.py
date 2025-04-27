@@ -3,11 +3,13 @@ from markupsafe import Markup
 from datetime import datetime, timedelta
 from utils import get_fact_by_date, get_tags_from_fact
 from ai import generate_ai_response
+import pytz
 
 app = Flask(__name__)
 
 from datetime import datetime, timedelta
 
+# Main page with time zone set to Eastern
 @app.route("/")
 def index():
     selected_day = request.args.get("day")
@@ -34,13 +36,30 @@ def index():
         next_date=next_date
     )
 
-
+# Add the search page that pings open AI for information
 @app.route("/explore/<tag>")
 def explore(tag):
     raw_text = generate_ai_response(tag)
-    paragraphs = raw_text.split("\n\n")  # double newline = new paragraph
+    paragraphs = raw_text.split("\n\n")  # double newline = new paragraph to separate the text a bit
     formatted = Markup("".join(f"<p>{p.strip()}</p>" for p in paragraphs if p.strip()))
     return render_template("search.html", tag=tag, ai_response=formatted)
 
+# Add an about page
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+# Add a topics page
+@app.route("/topics")
+def topics():
+    from utils import get_all_categories_and_tags
+    categories_tags = get_all_categories_and_tags()
+
+    all_tags = []
+    for tags in categories_tags.values():
+        all_tags.extend(tags)
+
+    return render_template("topics.html", all_tags=sorted(set(all_tags)))
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+

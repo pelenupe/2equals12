@@ -1,57 +1,66 @@
 /* Global Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Base Styles */
-  body {
-    background: #000;
-    color: #fff;
-    font-family: 'Oswald', sans-serif;
-    min-height: 100vh;
-  }
-  h1,h2,h3,h4,h5,h6 {
-    font-family: 'Monoton', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-  /* Sticky Navigation */
-  #main-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 30px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    height: 100px;
-  }
-  
-  #main-nav a {
-    color: #000;
-    text-decoration: none;
-    font-size: 28px;
-  }
-  
-  #main-nav.bg-white a {
-    color: #000;
-  }
 
-  #mobileNav {
-    position:fixed;
-  }
-  /* Hero Section */
-  #hero {
-    width: 100%;
-    min-height: calc(100vh - 100px);
-    background: center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 100px 60px 60px; 
-    position: absolute;
-  }
-  /* Hero Overlay Gradient */
+/* Base Styles */
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Monoton', sans-serif;
+}
+
+/* Sticky Navigation */
+#main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 30px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+#main-nav a {
+  color: #000;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+#main-nav.bg-white a {
+  color: #000;
+}
+
+#mobileNav {
+  position: fixed;
+}
+
+/* Hero Section */
+#hero {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  background: center/cover no-repeat;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  padding: 100px 60px 60px;
+  position: relative;
+}
+
+/* Hero Overlay Gradient */
 /* Hero Overlay */
 .hero-overlay {
   background-image: linear-gradient(0deg, #000000A8 50%, #CDFFC7CF 100%);
@@ -78,175 +87,183 @@
   background-color: #5BDB94;
 }
 
+.bg-green {
+  background-color: #169250;
+}
+.hero-left {
+  width: 55%;
+  z-index: 10;
+}
 
-  .hero-left {
-    width: 55%;
-    z-index: 10;
-  }
-  
-  .hero-left h1 {
-    font-family: 'Monoton', cursive;
-    font-size: 64px;
-    margin-bottom: 20px;
-  }
-  
-  .hero-left p {
-    font-size: 24px;
-    margin-bottom: 30px;
-    max-width: 600px;
-    line-height: 1.5;
-  }
-  
-  .hero-left a {
-    background-color: #5BDB94;
-    color: #000;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
-  
-  .hero-left a:hover {
-    background-color: #5BDB94;
-  }
-  
-  /* Today's Black History Fact Box */
-  .fact-box {
-    background-color:#00000099;
-    border: 10px solid #000000E6;
-    padding: 40px 30px;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    z-index: 10;
-  }
-  
-  .fact-box h2 {
-    font-size: 28px;
-    color: #5BDB94;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
-  
-  .fact-box p {
-    font-size: 16px;
-    margin: 8px 0;
-  }
-  
-  .fact-box .description {
-    margin-top: 15px;
-    font-size: 18px;
-    line-height: 1.6;
-  }
-  
-  .fact-box h3 {
-    margin-top: 20px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .fact-box ul {
-    list-style: none;
-    margin-top: 10px;
-    padding: 0;
-    text-align: center;
-  }
-  
-  .fact-box ul li {
-    margin-bottom: 5px;
-  }
-  
-  .fact-box ul li a {
-    color: #5BDB94;
-    text-decoration: none;
-  }
-  
-  .fact-box ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Date Form */
-  .date-form {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .date-form label {
-    font-size: 14px;
-  }
-  
-  .date-form input[type="date"] {
-    margin: 10px 0;
-    padding: 6px;
-    border-radius: 5px;
-    font-size: 14px;
-    width: 160px;
-    color: #000;
-  }
-  
-  .date-buttons {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .date-buttons a {
-    background-color: #16a34a;
-    color: #000;
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-size: 14px;
-    text-decoration: none;
-  }
-  
-  .date-buttons a:hover {
-    background-color: #15803d;
-  }
-  footer {
-    align-items: center;
-    background: #000;
-    bottom: 0;
-    color: #fff;
-    display: flex;
-    height: 70px;
-    justify-content: center;
-    position:absolute;
-  }
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    #main-nav {
+.hero-left h1 {
+  font-family: 'Monoton', cursive;
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.hero-left p {
+  font-size: 24px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.hero-left a {
+  background-color: #5BDB94;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.hero-left a:hover {
+  background-color: #5BDB94;
+}
+
+.main-text {
+  position: relative;
+  justify-content: flex-start;
+  width:100%;
+}
+
+/* Today's Black History Fact Box */
+.fact-box {
+  background-color: #00000099;
+  border: 10px solid #000000E6;
+  padding: 40px 30px;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+  z-index: 10;
+}
+
+.fact-box h2 {
+  font-size: 28px;
+  color: #5BDB94;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.fact-box p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.fact-box .description {
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.fact-box h3 {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.fact-box ul {
+  list-style: none;
+  margin-top: 10px;
+  padding: 0;
+  text-align: center;
+}
+
+.fact-box ul li {
+  margin-bottom: 5px;
+}
+
+.fact-box ul li a {
+  color: #5BDB94;
+  text-decoration: none;
+}
+
+.fact-box ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Date Form */
+.date-form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.date-form label {
+  font-size: 14px;
+}
+
+.date-form input[type="date"] {
+  margin: 10px 0;
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 160px;
+  color: #000;
+}
+
+.date-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.date-buttons a {
+  background-color: #16a34a;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.date-buttons a:hover {
+  background-color: #15803d;
+}
+
+footer {
+  align-items: center;
+  background: #000;
+  color: #fff;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  position: relative;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #main-nav {
       align-items: flex-start;
       position: fixed;
       padding: 15px;
       height: 70px;
-    }
-  
-    #hero {
+  }
+
+  #hero {
       flex-direction: column;
-      justify-content: center;
-      padding: 80px 10px 30px; /* <== reduce padding more */
-    }
-  
-    .hero-left,
-    .fact-box {
+      justify-content: flex-start;
+      padding: 80px 10px 30px;
+  }
+
+  .hero-left,
+  .fact-box {
       width: 100%;
       text-align: center;
       margin-bottom: 20px;
-      padding: 0 10px; /* <== minimal side padding */
-    }
-  
-    .hero-left h1 {
+      padding: 0 10px;
+  }
+
+  .hero-left h1 {
       font-size: 40px;
-    }
-  
-    .hero-left p {
+  }
+
+  .hero-left p {
       font-size: 18px;
       margin: 10px 0 20px;
-    }
-  
-    .fact-box {
-      padding: 20px 15px; /* <== tighter padding inside the fact box */
-    }
   }
-  
+
+  .fact-box {
+      padding: 20px 15px;
+  }
+}

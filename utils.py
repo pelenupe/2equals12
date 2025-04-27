@@ -37,3 +37,29 @@ def get_tags_from_fact(tags_string):
     cleaned_tags = [tag for tag in tags if tag not in banned_words and len(tag) > 2]
 
     return cleaned_tags
+
+def get_all_categories_and_tags():
+    conn = sqlite3.connect("facts.db")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    
+    cur.execute("SELECT category, tags FROM facts")
+    rows = cur.fetchall()
+    conn.close()
+
+    categories = {}
+
+    for row in rows:
+        category = row["category"].strip() if row["category"] else "Other"
+        tags = [tag.strip() for tag in row["tags"].split(",")] if row["tags"] else []
+
+        if category not in categories:
+            categories[category] = set()
+
+        categories[category].update(tags)
+
+    # Convert sets to sorted lists
+    for cat in categories:
+        categories[cat] = sorted(categories[cat])
+
+    return dict(sorted(categories.items()))

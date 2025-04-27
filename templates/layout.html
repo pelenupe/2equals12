@@ -17,17 +17,32 @@
     <!-- Custom Stylesheet (optional overrides) -->
     <link href="/static/css/styles.css" rel="stylesheet">
 
+    <!-- Find local time of the current user -->
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const dateInput = document.getElementById('select-date');
+        if (dateInput && !dateInput.value) {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = String(now.getMonth() + 1).padStart(2, '0'); 
+          const day = String(now.getDate()).padStart(2, '0');
+          const localDate = `${year}-${month}-${day}`;
+          dateInput.value = localDate;
+        }
+      });
+    </script>
+    
   </head>
   
   <body class="text-white min-h-screen flex flex-col relative">
     <!-- Responsive Sticky Nav -->
     <nav id="main-nav" class="sticky top-0 w-full flex justify-between items-center px-6 py-4 z-50 transition-all duration-500 bg-transparent">
       <div class="flex items-center gap-2">
-        <img src="/static/img/logo.svg" alt="2 Equals 12" class="h-10">
+        <a href="/"><img src="/static/img/logo.svg" alt="2 Equals 12" class="h-10"></a>
       </div>
       <div id="nav-links" class="hidden md:flex gap-6 text-sm uppercase font-semibold text-white transition-all duration-500">
         <a href="/" class="hover:underline">Home</a>
-        <a href="/collections" class="hover:underline">Collections</a>
+        <a href="/topics" class="hover:underline">Topics</a>
         <a href="/about" class="hover:underline">About</a>
       </div>
       <div class="md:hidden">
@@ -44,7 +59,7 @@
     <!-- Mobile Nav -->
     <div id="mobileNav" class="md:hidden hidden px-6 py-4 space-y-2 bg-black bg-opacity-95 absolute top-16 left-0 right-0 z-40">
       <a href="/" class="block text-sm uppercase font-semibold">Home</a>
-      <a href="/collections" class="block text-sm uppercase font-semibold">Collections</a>
+      <a href="/topics" class="block text-sm uppercase font-semibold">Topics</a>
       <a href="/about" class="block text-sm uppercase font-semibold">About</a>
     </div>
     {% block content %}{% endblock %}

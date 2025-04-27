@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}2 Equals 12 | Because Every Month is Black History Month{% endblock %}
+{% block title %}2 Equals 12 | Black History Every Day{% endblock %}
 
 {% block content %}
 <!-- Preload background images -->
@@ -19,19 +19,19 @@
   <div class="absolute inset-0 z-0 hero-overlay"></div>
 
   <!-- Left: Branding (only 3/5 width on mobile) -->
-  <div class="md:w-3/5 z-10">
-    <h1 class="text-7xl mb-6 font-monoton">2Equals12</h1>
+  <div class="md:w-3/5 py-4 z-10">
+    <h1 class="text-4xl mb-6 font-monoton">2Equals12</h1>
     <p class="text-3xl mb-8">
       Because Black History is every second, minute, hour, day, week and month of every year.
       Know your past, present, and future before it gets taken away.
     </p>
-    <a href="#" class="inline-block bg-custom-green bg-custom-green-hover text-black font-bold px-6 py-3 transition">
-      LEARN MORE
+    <a href="/about" class="inline-block bg-custom-green bg-custom-green-hover text-black font-bold px-6 py-3 transition">
+      WHY 2 EQUALS 12?
     </a>
   </div>
 
   <!-- Right: Fact Box (only 2/5 width on mobile)-->
-  <div class="md:w-2/5 z-10 fact-box p-8">
+  <div class="md:w-2/5 py-4 z-10 fact-box p-8">
     <h2 class="text-2xl text-custom-green mb-6 uppercase">
       Today's Black History Fact
     </h2>
@@ -42,13 +42,13 @@
 
     <h4 class="text-lg font-monoton uppercase mb-4">Learn More</h4>
 
-    <ul class="flex flex-wrap gap-3 mb-6">
+    <ul class="flex flex-wrap justify-center gap-3 mb-6">
       {% for tag in tags %}
         <li><a href="/explore/{{ tag }}" class="text-custom-green hover:underline text-sm">{{ tag }}</a></li>
       {% endfor %}
     </ul>
 
-    <form method="GET" action="/" class="flex flex-wrap gap-3 mt-4">
+    <form method="GET" action="/" class="text-center gap-3 mt-4">
       <label for="select-date" class="text-lg">View another day's fact:</label>
       <input 
         type="date" 
@@ -58,7 +58,7 @@
         onchange="this.form.submit()" 
         class="text-black text-sm px-2 py-1 w-36"
       >
-      <div class="flex gap-2 flex-wrap mt-3">
+      <div class="flex justify-center flex-wrap mt-3">
         <a href="/" class="bg-custom-green bg-custom-green-hover text-black px-3 py-1 text-sm">Reset</a>
         <a href="/?day={{ prev_date }}" class="bg-gray-700 text-white px-3 py-1 text-sm">← Previous</a>
         <a href="/?day={{ next_date }}" class="bg-gray-700 text-white px-3 py-1 text-sm">Next →</a>

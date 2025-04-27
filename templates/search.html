@@ -3,15 +3,25 @@
 {% block title %}Explore: {{ tag }} | 2 Equals 12{% endblock %}
 
 {% block content %}
-<div class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-16">
-  <div class="max-w-2xl w-full">
-    <h1 class="text-3xl monoton text-green-400 mb-6">Topic: {{ tag }}</h1>
-    <div class="text-lg leading-relaxed space-y-4">
-      {{ ai_response | safe }}
+
+    <div id="hero" class="relative min-h-screen flex items-center justify-center px-12 py-10 bg-center bg-cover">
+
+        <!-- Hero Overlay -->
+        <div class="absolute inset-0 z-0 hero-overlay"></div>
+        <!-- Main Text Area -->
+        <div class="main-text flex flex-col items-center px-6">
+            <div class="max-w-2xl w-full">
+                <h1 class="text-3xl text-black mb-6">Topic: {{ tag }}</h1>
+                <div class="text-lg leading-relaxed space-y-4">
+                    {{ ai_response | safe }}
+                </div>
+                <div class="mt-6">
+                    <p><a href="/topics" class="text-sm text-green-400 underline">More Topics</a></p>
+                </div>
+                <div class="mt-6">
+                  <p><a href="/" class="text-sm text-green-400 underline">← Back Home</a></p>
+              </div>
+            </div>
+        </div>
     </div>
-    <div class="mt-6">
-      <a href="/" class="text-sm text-green-400 underline">← Back to today's fact</a>
-    </div>
-  </div>
-</div>
 {% endblock %}
