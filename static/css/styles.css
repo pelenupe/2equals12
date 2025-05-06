@@ -19,6 +19,7 @@ body {
   font-family: 'Oswald', sans-serif;
   margin-top: 0px;
   min-height: calc(100vh - 100px);
+  padding-top: env(safe-area-inset-top);
 }
 
 /* preloading animation */
@@ -53,7 +54,7 @@ h1 span {
   align-items: center;
   box-shadow: 0 0 -5px rgba(255,255,255,1);
   display: flex;
-  height: 100px;
+  height: calc(100px + env(safe-area-inset-top));
   padding: 20px 30px;
   position: fixed;
   top: 0;
