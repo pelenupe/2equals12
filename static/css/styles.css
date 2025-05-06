@@ -18,7 +18,7 @@ body {
   color: #fff;
   font-family: 'Oswald', sans-serif;
   margin-top: 0px;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
 }
 
 /* preloading animation */
@@ -297,7 +297,13 @@ footer {
 }
 @media only screen 
   and (orientation: portrait) {
+    body {
+      padding-top: calc(20px + env(safe-area-inset-top));
+    }
     #main-nav {
       padding-top: calc(20px + env(safe-area-inset-top));
+    }
+    #mobileNav {
+      top: calc(80px + env(safe-area-inset-top));
     }
 }
