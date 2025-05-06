@@ -295,11 +295,3 @@ footer {
     padding: 20px 15px;
   }
 }
-@supports(padding-top: env(safe-area-inset-top)) {
-  body {
-    padding-top: env(safe-area-inset-top);
-  }
-  #main-nav {
-    height: calc(70px + env(safe-area-inset-top));
-  }
-}
