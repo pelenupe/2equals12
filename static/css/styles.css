@@ -264,7 +264,7 @@ footer {
   #main-nav {
     align-items: flex-start;
     height: 70px;
-    padding: 20px 15px 15px;
+    padding: 30px 15px 15px;
     position: fixed;
   }
 
@@ -294,4 +294,12 @@ footer {
   .fact-box {
     padding: 20px 15px;
   }
+}
+@media only screen 
+  and (orientation: landscape) 
+  and (hover: none) 
+  and (pointer: coarse) {
+    #main-nav {
+      padding-top: 15px;
+    }
 }
