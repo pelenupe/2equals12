@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 from datetime import datetime, timedelta
 
-# Main page with time zone set to Eastern
+# Main page with time zone set to user's current time zone
 @app.route("/")
 def index():
     selected_day = request.args.get("day")
@@ -42,7 +42,7 @@ def explore(tag):
     raw_text = generate_ai_response(tag)
     paragraphs = raw_text.split("\n\n")  # double newline = new paragraph to separate the text a bit
     formatted = Markup("".join(f"<p>{p.strip()}</p>" for p in paragraphs if p.strip()))
-    return render_template("search.html", tag=tag, ai_response=formatted)
+    return render_template("explore.html", tag=tag, ai_response=formatted)
 
 # Add an about page
 @app.route("/about")
@@ -60,5 +60,22 @@ def topics():
         all_tags.extend(tags)
 
     return render_template("topics.html", all_tags=sorted(set(all_tags)))
+
+# Add quotes page
+@app.route("/quotes")
+def quotes():
+    from utils import get_all_quotes
+    quotes_list = get_all_quotes()
+
+    # Find current month index
+    today = datetime.today()
+    current_month = today.strftime("%B")
+    try:
+        current_index = next(i for i, q in enumerate(quotes_list) if q["month"] == current_month)
+    except StopIteration:
+        current_index = 0  # fallback if no match
+
+    return render_template("quotes.html", quotes=quotes_list, current_index=current_index)
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5001)

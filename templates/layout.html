@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
+    <meta name="apple-itunes-app" content="app-id=6745202800">
+
     <!-- Viewport Meta Tag to Make Site Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -35,6 +36,9 @@
   </head>
   
   <body class="text-white min-h-screen flex flex-col relative">
+    <div id="preloader" class="fixed inset-0 bg-custom-green z-50 flex items-center justify-center hidden">
+      <img src="/static/img/favicon.svg" alt="Loading..." id="preloader-logo" class="w-16 h-16">
+    </div>
     <!-- Responsive Sticky Nav -->
     <nav id="main-nav" class="sticky top-0 w-full flex justify-between items-center px-6 py-4 z-50 transition-all duration-500 bg-transparent">
       <div class="flex items-center gap-2">
@@ -44,6 +48,7 @@
         <a href="/" class="hover:underline">Home</a>
         <a href="/topics" class="hover:underline">Topics</a>
         <a href="/about" class="hover:underline">About</a>
+        <a href="/quotes" class="hover:underline">Quotes</a>
       </div>
       <div class="md:hidden">
         <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
@@ -61,11 +66,30 @@
       <a href="/" class="block text-sm uppercase font-semibold">Home</a>
       <a href="/topics" class="block text-sm uppercase font-semibold">Topics</a>
       <a href="/about" class="block text-sm uppercase font-semibold">About</a>
+      <a href="/quotes" class="block text-sm uppercase font-semibold">Quotes</a>
     </div>
     {% block content %}{% endblock %}
     <footer class="w-full text-center py-6">
      <p>© {{ current_year }} Tchad Blair, LLC. All rights reserved.</p> 
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const preloader = document.getElementById('preloader');
+      
+          document.querySelectorAll('a').forEach(link => {
+              link.addEventListener('click', function(event) {
+                  const href = link.getAttribute('href');
+                  if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
+                      preloader.classList.remove('hidden');
+                  }
+              });
+          });
+      
+          window.addEventListener('load', () => {
+              preloader.classList.add('hidden');
+          });
+      });
+    </script>      
     <script>
       const nav = document.getElementById('main-nav');
       const navLinks = document.getElementById('nav-links');

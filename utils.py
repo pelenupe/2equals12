@@ -63,3 +63,24 @@ def get_all_categories_and_tags():
         categories[cat] = sorted(categories[cat])
 
     return dict(sorted(categories.items()))
+
+def get_all_quotes():
+    import sqlite3
+
+    conn = sqlite3.connect('facts.db')
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+
+    c.execute('SELECT month, quote, author FROM quotes')
+    rows = c.fetchall()
+
+    quotes = []
+    for row in rows:
+        quotes.append({
+            "month": row["month"],
+            "quote": row["quote"],
+            "author": row["author"]
+        })
+
+    conn.close()
+    return quotes

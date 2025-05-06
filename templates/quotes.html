@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}Quotes: {{ tag }} | 2 Equals 12{% endblock %}
+
+{% block content %}
+
+<div id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-12 py-10 bg-center bg-cover">
+
+    <div class="absolute inset-0 z-0 hero-overlay"></div>
+
+    <div class="main-text text-center z-10">
+        <h1 class="text-2xl text-black mb-4 font-bold">
+            <span id="quote-text"></span>
+        </h1>
+        <p id="quote-author" class="text-xl text-green-400 mb-8"></p>
+
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <select id="month-select" class="text-black p-2 border rounded">
+                {% for quote in quotes %}
+                  <option value="{{ loop.index0 }}">{{ quote.month }}</option>
+                {% endfor %}
+            </select>
+            <button id="random-btn" class="bg-green-400 hover:bg-green-500 text-black px-4 py-2 rounded">Random Quote</button>
+            <a href="/" class="text-sm text-green-400 underline mt-4 block">← Back Home</a>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    const quotesData = JSON.parse('{{ quotes | tojson | safe }}');
+    const currentIndex = JSON.parse('{{ current_index | default(0) }}');
+    
+    const quoteText = document.getElementById('quote-text');
+    const quoteAuthor = document.getElementById('quote-author');
+    const monthSelect = document.getElementById('month-select');
+    const randomBtn = document.getElementById('random-btn');
+  
+    function displayQuote(index) {
+      const q = quotesData[index];
+      if (q) {
+        quoteText.textContent = `"${q.quote}"`;
+        quoteAuthor.innerHTML = `<a href="/explore/${encodeURIComponent(q.author)}" class="hover:underline">${q.author}</a>`;
+        monthSelect.selectedIndex = index;
+      }
+    }
+  
+    monthSelect.addEventListener('change', (e) => {
+      displayQuote(parseInt(e.target.value));
+    });
+  
+    randomBtn.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * quotesData.length);
+      displayQuote(randomIndex);
+    });
+  
+    // Initial display
+    displayQuote(currentIndex);
+  </script>   
+
+{% endblock %}
