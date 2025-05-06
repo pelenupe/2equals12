@@ -264,7 +264,7 @@ footer {
   #main-nav {
     align-items: flex-start;
     height: 70px;
-    padding: 30px 15px 15px;
+    padding: 20px 15px 60px;
     position: fixed;
   }
 
@@ -296,10 +296,9 @@ footer {
   }
 }
 @media only screen 
-  and (orientation: landscape) 
-  and (hover: none) 
-  and (pointer: coarse) {
+  and (orientation: landscape) {
     #main-nav {
-      padding-top: 15px;
+      height: 100px;
+      margin-top: 15px
     }
 }
