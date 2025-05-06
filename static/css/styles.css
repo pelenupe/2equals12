@@ -296,9 +296,8 @@ footer {
   }
 }
 @media only screen 
-  and (orientation: landscape) {
+  and (orientation: portrait) {
     #main-nav {
-      height: 100px;
-      margin-top: 15px
+      padding-top: calc(20px + env(safe-area-inset-top));
     }
 }
