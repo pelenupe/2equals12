@@ -298,7 +298,7 @@ footer {
 @media only screen 
   and (orientation: portrait) {
     body {
-      padding-top: calc(20px + env(safe-area-inset-top));
+      padding-top: calc(0px + env(safe-area-inset-top));
     }
     #main-nav {
       padding-top: calc(20px + env(safe-area-inset-top));
