@@ -307,3 +307,9 @@ footer {
       top: calc(80px + env(safe-area-inset-top));
     }
 }
+@media only screen 
+  and (orientation: landscape) {
+    #mobileNav {
+      top: 80px;
+    }
+}
