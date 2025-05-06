@@ -263,7 +263,7 @@ footer {
 @media (max-width: 768px) {
   #main-nav {
     align-items: flex-start;
-    height: calc(70px + env(safe-area-inset-top));
+    height: 70px;
     padding: 20px 15px 15px;
     position: fixed;
   }
@@ -298,5 +298,8 @@ footer {
 @supports(padding-top: env(safe-area-inset-top)) {
   body {
     padding-top: env(safe-area-inset-top);
+  }
+  #main-nav {
+    height: calc(70px + env(safe-area-inset-top));
   }
 }
