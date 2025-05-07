@@ -293,13 +293,13 @@ h1 span {
     #main-nav {
       padding-top: calc(20px + env(safe-area-inset-top));
     }
-    #search-overlay {
+    #searchBar {
       top: calc(80px + env(safe-area-inset-top));
     }
 }
 @media only screen 
   and (orientation: landscape) {
-    #search-overlay {
+    #searchBar {
       top: 80px;
     }
 }
