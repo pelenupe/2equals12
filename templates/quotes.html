@@ -9,9 +9,10 @@
     <div class="absolute inset-0 z-0 hero-overlay"></div>
 
     <div class="main-text text-center z-10">
-        <h1 class="text-2xl text-black mb-4 font-bold bg-custom-green bg-opacity-90 p-2">
-            <span id="quote-text"></span>
+        <h1 class="text-3xl text-black mb-6 font-monoton">
+            Quotes
         </h1>
+        <p id="quote-text" class="text-2xl max-w-3xl text-black p-2 leading-relaxed mb-8 bg-custom-green bg-opacity-90"></p>
         <p id="quote-author" class="text-xl text-green-400 mb-8"></p>
 
         <div class="flex flex-wrap justify-center gap-4 mt-6">
@@ -21,7 +22,6 @@
                 {% endfor %}
             </select>
             <button id="random-btn" class="bg-green-400 hover:bg-green-500 text-black px-4 py-2">Random Quote</button>
-            <a href="/" class="text-sm text-green-400 underline mt-4 block">← Back Home</a>
         </div>
     </div>
 

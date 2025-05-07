@@ -41,6 +41,20 @@ def index():
         prev_date=prev_date,
         next_date=next_date
     )
+# ------------------------------
+# Route: Pass tags to every page for drop down predictive search
+# ------------------------------
+@app.context_processor
+def inject_all_tags():
+    categories_tags = get_all_categories_and_tags()
+
+    # Flatten all tags into a single list and deduplicate
+    all_tags = []
+    for tags in categories_tags.values():
+        all_tags.extend(tags)
+
+    return dict(all_tags=sorted(set(all_tags)))
+
 
 # ------------------------------
 # Route: Explore a Tag "/explore/<tag>"

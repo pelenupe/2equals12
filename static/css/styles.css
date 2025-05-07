@@ -48,7 +48,7 @@ h1 span {
   font-family: 'Oswald', sans-serif;
 }
 
-/* Sticky Navigation */
+/* Sticky Header */
 #main-nav {
   align-items: center;
   box-shadow: 0 0 -5px rgba(255,255,255,1);
@@ -71,8 +71,8 @@ h1 span {
   color: #000;
 }
 
-#mobileNav {
-  position: fixed;
+#searchBar {
+  top: 80px;
 }
 
 /* Hero Section */
@@ -81,7 +81,7 @@ h1 span {
   background: center/cover no-repeat;
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 100px);
+  min-height: 100vh;
   padding: 100px 60px 60px;
   position: relative;
   width: 100%;
@@ -194,16 +194,6 @@ h1 span {
   background-color: #15803d;
 }
 
-footer {
-  align-items: center;
-  background: #000;
-  color: #fff;
-  display: flex;
-  height: 70px;
-  justify-content: center;
-  position: relative;
-}
-
 .hero-left {
   width: 55%;
   z-index: 10;
@@ -303,13 +293,13 @@ footer {
     #main-nav {
       padding-top: calc(20px + env(safe-area-inset-top));
     }
-    #mobileNav {
+    #search-overlay {
       top: calc(80px + env(safe-area-inset-top));
     }
 }
 @media only screen 
   and (orientation: landscape) {
-    #mobileNav {
+    #search-overlay {
       top: 80px;
     }
 }

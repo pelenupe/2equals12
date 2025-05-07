@@ -3,114 +3,64 @@
 {% block title %}Topics | 2 Equals 12{% endblock %}
 
 {% block content %}
-<div id="hero" class="relative min-h-screen flex flex-col items-center justify-flex-start px-12 py-10 bg-center bg-cover">
 
-    <!-- Hero Overlay -->
-    <div class="absolute inset-0 z-0 hero-overlay"></div>
+<!-- Hero Section -->
+<div id="hero" class="relative min-h-screen flex items-center justify-center px-12 py-10 bg-center bg-cover">
 
-    <div class="main-text">
-        <h1 class="text-3xl text-black mb-10 text-center">Search Topics</h1>
+  <!-- Hero Overlay -->
+  <div class="absolute inset-0 z-0 hero-overlay"></div>
 
-        <div class="w-full flex gap-2">
-          <input 
-            id="search-input" 
-            type="text" 
-            placeholder="Start typing to search Black history facts..." 
-            class="text-black p-3 w-full border mb-4"
-            autocomplete="on"
-          >
-          <button 
-            id="search-button"
-            class="bg-green-500 text-black font-bold px-4 py-2 bg-custom-green bg-custom-green-hover text-black px-3 py-1 text-sm mb-4 hover:bg-green-600"
-          >
-            Search
-          </button>
+  <!-- Center Content -->
+  <div class="z-10 text-center w-full gap-2">
+    <h1 class="text-3xl text-black mb-6 font-monoton">Topics</h1>
+
+    <!-- Accordions -->
+    <div id="accordion" class="space-y-4">
+
+    {% set groups = {
+      'A-F': [],
+      'G-L': [],
+      'M-R': [],
+      'S-Z': []
+    } %}
+
+    {% for tag in all_tags|sort %}
+      {% set first = tag[0]|upper %}
+      {% if 'A' <= first <= 'F' %}
+        {% set _ = groups['A-F'].append(tag) %}
+      {% elif 'G' <= first <= 'L' %}
+        {% set _ = groups['G-L'].append(tag) %}
+      {% elif 'M' <= first <= 'R' %}
+        {% set _ = groups['M-R'].append(tag) %}
+      {% else %}
+        {% set _ = groups['S-Z'].append(tag) %}
+      {% endif %}
+    {% endfor %}
+
+    {% for range, tags in groups.items() %}
+      <div>
+        <button class="w-full text-left px-4 py-3 font-semibold bg-custom-green text-black" onclick="toggleAccordion('{{ range }}')">
+          {{ range }} ({{ tags|length }} Topics)
+        </button>
+        <div id="panel-{{ range }}" class="hidden px-4 py-2 bg-white">
+          <ul class="space-y-2">
+            {% for tag in tags %}
+              <li>
+                <a href="/explore/{{ tag | urlencode }}" class="text-black hover:underline">{{ tag }}</a>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
-        
-        <ul id="suggestions" class="bg-black border rounded shadow-md hidden"></ul>
-        
-        <div id="preloader" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 z-50">
-          <img src="/static/img/favicon.svg" class="animate-spin w-16 h-16" alt="Loading...">
-        </div>
-
-        <div class="mt-6">
-            <p><a href="/" class="text-sm text-green-400 underline">← Back Home</a></p>
-        </div>
+      </div>
+    {% endfor %}
     </div>
+  </div>
 </div>
-
+<!-- Accordion functionality -->
 <script>
-  const allTags = JSON.parse('{{ all_tags|tojson|safe }}');
-  const input = document.getElementById('search-input');
-  const suggestions = document.getElementById('suggestions');
-  const searchButton = document.getElementById('search-button');
-  
-  input.addEventListener('input', function() {
-    const value = this.value.toLowerCase();
-    suggestions.innerHTML = '';
-  
-    if (value.length === 0) {
-      suggestions.classList.add('hidden');
-      return;
-    }
-  
-    const matches = allTags.filter(tag => tag.toLowerCase().includes(value));
-  
-    if (matches.length === 0) {
-      suggestions.classList.add('hidden');
-      return;
-    }
-  
-    matches.forEach(tag => {
-      const li = document.createElement('li');
-      li.textContent = tag;
-      li.className = 'p-2 hover:bg-green-400 cursor-pointer'; // (fixed hover class here too)
-      li.addEventListener('click', () => {
-        input.value = tag;
-        suggestions.classList.add('hidden');
-        showLoading();
-        window.location.href = `/explore/${encodeURIComponent(tag)}`;
-      });
-      suggestions.appendChild(li);
-    });
-  
-    suggestions.classList.remove('hidden');
-  });
-  
-  // Only hide suggestions if clicking *outside* input and *outside* suggestions
-  document.addEventListener('click', function(event) {
-    if (!input.contains(event.target) && !suggestions.contains(event.target)) {
-      suggestions.classList.add('hidden');
-    }
-  });
-  
-  // Handle Enter key
-  input.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      doSearch();
-    }
-  });
-  
-  // Handle Search button click
-  searchButton.addEventListener('click', function() {
-    doSearch();
-  });
-  
-  function doSearch() {
-    const query = input.value.trim();
-    if (query.length > 0) {
-      showLoading();
-      window.location.href = `/explore/${encodeURIComponent(query)}`;
-    }
-  }
-  
-  function showLoading() {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-      preloader.classList.remove('hidden');
-    }
-  }
-  </script>
-  
+function toggleAccordion(id) {
+  const panel = document.getElementById('panel-' + id);
+  panel.classList.toggle('hidden');
+}
+</script>
 {% endblock %}
