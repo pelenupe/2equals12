@@ -286,7 +286,7 @@ h1 span {
   }
 
   .hero-overlay {
-    background-image: linear-gradient(180deg, #cbe6d7 80px, #000000A8 80px);
+    background-image: linear-gradient(180deg, #cbe6d7 calc(80px + env(safe-area-inset-top)), #000000A8 calc(80px + env(safe-area-inset-top)));
   }
   
   .home .hero-overlay {
