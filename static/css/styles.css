@@ -261,7 +261,7 @@ h1 span {
   #hero {
     flex-direction: column;
     justify-content: flex-start;
-    padding: 80px 10px 30px;
+    padding: 120px 10px 100px;
   }
 
   .hero-left,
