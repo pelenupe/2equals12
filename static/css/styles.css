@@ -46,6 +46,7 @@ h6 {
 
 h1 span {
   font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
 }
 
 /* Sticky Header */
@@ -93,12 +94,15 @@ h1 span {
 
 /* Hero Overlay */
 .hero-overlay {
-  background-image: linear-gradient(0deg, #000000A8 0%, #70b087 100%);
+  /* background-image: linear-gradient(0deg, #000000A8 0%, #70b087 100%); */
+  background-image: linear-gradient(180deg, #cbe6d7 100px, #000000A8 100px);
+  background-attachment: fixed;
 }
 
 /* Different Hero Overlay For the Home Page */
 .home .hero-overlay {
   background-image: linear-gradient(0deg, #000000A8 50%, #CDFFC7CF 100%);
+  background-attachment: unset;
 }
 
 /* Fact Box */
@@ -281,10 +285,27 @@ h1 span {
     margin: 10px 0 20px;
   }
 
+  .hero-overlay {
+    background-image: linear-gradient(180deg, #cbe6d7 80px, #000000A8 80px);
+  }
+  
+  .home .hero-overlay {
+    background-image: linear-gradient(0deg, #000000A8 50%, #CDFFC7CF 100%);
+  }
+
   .fact-box {
     padding: 20px 15px;
   }
 }
+@media (min-width: 768px){
+  nav.fixed.bg-black {
+    display:none;
+  }
+  h1:not(.home) {
+    padding-top:2rem;
+  }
+}
+
 @media only screen 
   and (orientation: portrait) {
     body {

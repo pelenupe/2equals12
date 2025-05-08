@@ -4,16 +4,16 @@
 
 {% block content %}
 
-<div id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-12 py-10 bg-center bg-cover">
+<div id="hero" class="relative min-h-screen flex flex-col items-center justify-flex-start px-12 py-10 bg-center bg-cover">
 
     <div class="absolute inset-0 z-0 hero-overlay"></div>
 
     <div class="main-text text-center z-10">
-        <h1 class="text-3xl text-black mb-6 font-monoton">
+        <h1 class="text-3xl text-white mb-6 font-monoton">
             Quotes
         </h1>
-        <p id="quote-text" class="text-2xl max-w-3xl text-black p-2 leading-relaxed mb-8 bg-custom-green bg-opacity-90"></p>
-        <p id="quote-author" class="text-xl text-green-400 mb-8"></p>
+        <p id="quote-text" class="text-2xl text-black p-2 leading-relaxed mb-8 bg-custom-green bg-opacity-90"></p>
+        <p id="quote-author" class="text-xl text-custom-green mb-8"></p>
 
         <div class="flex flex-wrap justify-center gap-4 mt-6">
             <select id="month-select" class="text-black p-2 border">
@@ -21,7 +21,7 @@
                   <option value="{{ loop.index0 }}">{{ quote.month }}</option>
                 {% endfor %}
             </select>
-            <button id="random-btn" class="bg-green-400 hover:bg-green-500 text-black px-4 py-2">Random Quote</button>
+            <button id="random-btn" class="bg-custom-green hover:bg-green-500 text-black px-4 py-2">Random Quote</button>
         </div>
     </div>
 
