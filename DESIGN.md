@@ -60,6 +60,9 @@ CREATE TABLE IF NOT EXISTS quotes (
     quote TEXT NOT NULL,
     author TEXT NOT NULL
 );
+### Splash Screen:
+Users will see a splash screen with the 2 Equals 12 logo before the page loads
+
 ### Predictive Search:
 Every page features a top navigation search icon that toggles a dropdown predictive search bar.
 When the user clicks the search icon, a text input appears.
@@ -70,9 +73,7 @@ Preloader animation appears while navigating to simulate smooth transitions.
 #### Design Decisions (Predictive Search):
 
 Implemented globally inside layout.html, so it's available across every page.
-
 Tailwind utility classes like hover:bg-green-400 and text-black are used for quick style changes.
-
 Designed mobile-first: input fields and hit areas are touch-friendly and sized for smartphones.
 
 ### Topics Page (/topics):
@@ -82,10 +83,9 @@ Grouping topics improves usability on mobile screens instead of showing hundreds
 #### Accordion Mechanism:
 
 Built manually with lightweight JavaScript (toggleAccordion(id)).
-
 No third-party JS libraries (like Bootstrap or AlpineJS) are used.
 
-OpenAI Explore Feature (/explore/<tag>):
+##### OpenAI Explore Feature (/explore/<tag>):
 When a user selects a tag or submits a search, the app uses OpenAI’s API (via ai.py) to dynamically generate an exploration article about the selected topic.
 
 Content is educational, factual, and generated on the fly.
@@ -123,6 +123,8 @@ Flickers were initially common when moving between pages. Event listeners were a
 
 ### Future Improvements
 Caching OpenAI exploration results for faster repeated queries.
+
+Creating a newsletter to send out daily facts and/or a push notification.
 
 Adding "favorites" or "saved facts" via localStorage or user accounts.
 
