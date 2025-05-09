@@ -12,6 +12,12 @@
 - 📱 Mobile-responsive design, including safe-area padding for iPhones
 - 🎨 Custom styling with TailwindCSS, Monoton and Oswald fonts
 
+### Progressive Web App (PWA)
+
+- The 2 Equals 12 site also includes basic PWA support with a `manifest.json` and `service-worker.js` for offline caching and app-like behavior.
+- Users on Android can install the site to their home screen, enabling faster access and minimal browser chrome.
+- While iOS does not support automatic PWA install banners, the site is also published to the Apple App Store and Google Play for a full app experience.
+
 ## Live Demo
 
 👉 [Visit the live app](https://app.2equals12.com)

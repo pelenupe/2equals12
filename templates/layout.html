@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="apple-itunes-app" content="app-id=6745202800">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  
+  <meta name="theme-color" content="#5BDB94">
+
+  <!-- Link for pwa manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="manifest" href="/static/manifest.json">
+
   <!-- Page Title -->
   <title>{% block title %}2 Equals 12{% endblock %}</title>
 
@@ -36,6 +41,13 @@
 </head>
 
 <body class="text-white min-h-screen flex flex-col relative">
+  <!-- Splash Screen -->
+  <div id="splash-screen" class="fixed inset-0 bg-custom-green flex items-center justify-center z-50">
+    <div class="text-center">
+      <img src="/static/img/logo.svg" alt="2 Equals 12" class="w-32 h-32 mb-6 mx-auto">
+      <h1 class="text-white text-2xl font-monoton">2 Equals 12</h1>
+    </div>
+  </div>
 
   <!-- Preloader overlay that shows a spinning favicon while loading -->
   <div id="preloader" class="fixed inset-0 bg-custom-green z-50 flex items-center justify-center hidden">
@@ -86,7 +98,7 @@
       </svg>          
       Home
     </a>
-    <a href="/topics" class="flex flex-col items-center text-xs {% if request.path == '/topics' %}text-custom-green{% else %}text-white{% endif %}">
+    <a href="/topics" class="flex flex-col items-center text-xs {% if request.path == '/topics' or '/explore/' in request.path %}text-custom-green{% else %}text-white{% endif %}">
       <!-- Topics Icon -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
         <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
@@ -242,7 +254,57 @@
     }
   });
 </script>
-  
+<!-- Splash Screen --> 
+<script>
+  window.addEventListener('load', function() {
+    const splash = document.getElementById('splash-screen');
+    splash.classList.add('opacity-0');
+    setTimeout(() => {
+      splash.classList.add('hidden');
+    }, 500); // Fade out after half a second
+  });
+</script>
+<!-- Register service worker for PWA -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(function(error) {
+        console.log('Service Worker registration failed:', error);
+      });
+  }
+</script>
+<!-- Custom Android smart banner to prompt Android users to download the app -->
+<div id="android-app-banner" class="hidden fixed bottom-0 w-full bg-green-600 text-black p-4 flex justify-between items-center z-50">
+  <div>
+    <strong>Install 2 Equals 12</strong><br>
+    Get daily Black history facts with our official app.
+  </div>
+  <div class="flex gap-2">
+    <a href="https://play.google.com/store/apps/details?id=com.blactive.twoequalstwelve" class="bg-black text-white px-3 py-1 rounded" target="_blank" rel="noopener">Open in Play Store</a>
+    <button id="dismiss-android-banner" class="underline text-black">Dismiss</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const isAndroid = /android/i.test(navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    const dismissed = localStorage.getItem('dismissAndroidBanner');
+
+    if (isAndroid && !isStandalone && !dismissed) {
+      document.getElementById('android-app-banner').classList.remove('hidden');
+    }
+
+    document.getElementById('dismiss-android-banner').addEventListener('click', function () {
+      document.getElementById('android-app-banner').classList.add('hidden');
+      localStorage.setItem('dismissAndroidBanner', 'true');
+    });
+  });
+</script>
+
 
 </body>
 </html>

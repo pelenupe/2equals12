@@ -21,6 +21,11 @@ body {
   min-height: calc(100vh - 120px);
 }
 
+/* Splash Screen Transition */
+#splash-screen {
+  transition: opacity 0.5s ease;
+}
+
 /* preloading animation */
 #preloader-logo {
   animation: spin .5s linear infinite;

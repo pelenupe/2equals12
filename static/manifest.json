@@ -1,0 +1,37 @@
+{
+    "name": "2 Equals 12",
+    "short_name": "2=12",
+    "description": "Daily Black history facts and exploration.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#5BDB94",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "/static/img/favicon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/img/favicon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/static/img/screenshot-desktop.png",
+        "sizes": "2560x1600",
+        "type": "image/png",
+        "form_factor": "wide"
+      },
+      {
+        "src": "/static/img/screenshot-mobile.png",
+        "sizes": "375x667",
+        "type": "image/png",
+        "form_factor": "narrow"
+      }
+    ]
+  }
+  
