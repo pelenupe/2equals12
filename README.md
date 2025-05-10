@@ -26,7 +26,7 @@
 
 - **Manifest**: A `manifest.json` defines app icons, name, theme, and startup behavior.
 - **Service Worker**: A `service-worker.js` caches core files for offline access.
-- **Android Users**: Will receive a prompt to install the app to their home screen (native-like experience).
+- **Android Users**: Will receive a prompt to install the app to their home screen.
 - **iOS Users**: Encouraged to install the full native app from the App Store (no auto PWA banner on iOS).
 
 ## App Stores

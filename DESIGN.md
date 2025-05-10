@@ -32,6 +32,8 @@ APIs: OpenAI API for generating exploration responses
 
 Deployment: Linux server (gunicorn + nginx)
 
+App stores: Node, Swift, Kotlin + Java
+
 ## Project Structure
 2equals12/
 ├── app.py
