@@ -2,6 +2,11 @@
 
 2 Equals 12 is a daily Black History fact web application built with Flask. It presents a new fact each day and allows users to explore topics in Black history through predictive search and AI-powered exploration.
 
+## Presentation
+
+My vidoe presentation is here:
+[https://youtu.be/sLuuCP3bUTM](https://youtu.be/sLuuCP3bUTM)
+
 ## Features
 
 - 📅 **Daily Fact**: Each calendar day reveals a unique historical fact from Black history.
