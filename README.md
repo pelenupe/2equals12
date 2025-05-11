@@ -2,6 +2,9 @@
 
 2 Equals 12 is a daily Black History fact web application built with Flask. It presents a new fact each day and allows users to explore topics in Black history through predictive search and AI-powered exploration.
 
+## Git Repo
+[https://github.com/pelenupe/2equals12](https://github.com/pelenupe/2equals12)
+
 ## Presentation
 
 My vidoe presentation is here:

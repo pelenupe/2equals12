@@ -81,10 +81,6 @@ App stores: Node, Swift, Kotlin + Java
 │   ├── quotes.html
 │   └── about.html
 │
-├── insert/
-│   ├── quotes_insert.sql
-│   └── facts_insert_statements.sql
-│
 ├── README.md
 ├── DESIGN.md
 └── vite.config.ts                 # If using Vite tooling, otherwise optional
