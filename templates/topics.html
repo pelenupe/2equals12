@@ -15,45 +15,27 @@
     <h1 class="text-3xl text-white mb-6 font-monoton">Topics</h1>
 
     <!-- Accordions -->
-    <div id="accordion" class="space-y-4">
-
-    {% set groups = {
-      'A-F': [],
-      'G-L': [],
-      'M-R': [],
-      'S-Z': []
-    } %}
-
-    {% for tag in all_tags|sort %}
-      {% set first = tag[0]|upper %}
-      {% if 'A' <= first <= 'F' %}
-        {% set _ = groups['A-F'].append(tag) %}
-      {% elif 'G' <= first <= 'L' %}
-        {% set _ = groups['G-L'].append(tag) %}
-      {% elif 'M' <= first <= 'R' %}
-        {% set _ = groups['M-R'].append(tag) %}
-      {% else %}
-        {% set _ = groups['S-Z'].append(tag) %}
-      {% endif %}
-    {% endfor %}
-
-    {% for range, tags in groups.items() %}
-      <div>
-        <button class="w-full text-left px-4 py-3 font-semibold bg-custom-green text-black" onclick="toggleAccordion('{{ range }}')">
-          {{ range }} ({{ tags|length }} Topics)
-        </button>
-        <div id="panel-{{ range }}" class="hidden px-4 py-2 bg-white">
-          <ul class="space-y-2">
-            {% for tag in tags %}
-              <li>
-                <a href="/explore/{{ tag | urlencode }}" class="text-black hover:underline">{{ tag }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
+<div id="accordion" class="space-y-4">
+  {% for range, tags in groups.items() %}
+    <div>
+      <button class="w-full text-left px-4 py-3 font-semibold bg-custom-green text-black"
+              onclick="toggleAccordion('{{ range }}')">
+        {{ range }} ({{ tags|length }} Topics)
+      </button>
+      <div id="panel-{{ range }}" class="hidden px-4 py-2 bg-white">
+        <ul class="space-y-2">
+          {% for tag in tags %}
+            <li>
+              <a href="/explore/{{ tag|urlencode }}"
+                 class="text-black hover:underline">{{ tag }}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
-    {% endfor %}
     </div>
+  {% endfor %}
+</div>
+
   </div>
 </div>
 <!-- Accordion functionality -->

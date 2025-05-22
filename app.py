@@ -80,16 +80,36 @@ def about():
 # Route: Topics Page "/topics"
 # --------------------
 # Displays all searchable tags, sorted alphabetically
+from flask import render_template
+
 @app.route("/topics")
 def topics():
     categories_tags = get_all_categories_and_tags()
 
-    # Flatten all tags into a single list and deduplicate
-    all_tags = []
-    for tags in categories_tags.values():
-        all_tags.extend(tags)
+    # 1) flatten + dedupe
+    unique_tags = {t for tags in categories_tags.values() for t in tags}
 
-    return render_template("topics.html", all_tags=sorted(set(all_tags)))
+    # 2) sort, ignoring any surrounding single-quotes and case
+    sorted_tags = sorted(
+        unique_tags,
+        key=lambda t: t.strip("'").lower()
+    )
+
+    # 3) bucket into A–F, G–L, M–R, S–Z
+    groups = {'A-F': [], 'G-L': [], 'M-R': [], 'S-Z': []}
+    for tag in sorted_tags:
+        stripped = tag.strip("'")               # strip quotes for grouping
+        first = stripped[0].upper() if stripped else ''
+        if first.isdigit() or 'A' <= first <= 'F':
+            groups['A-F'].append(tag)
+        elif 'G' <= first <= 'L':
+            groups['G-L'].append(tag)
+        elif 'M' <= first <= 'R':
+            groups['M-R'].append(tag)
+        else:
+            groups['S-Z'].append(tag)
+
+    return render_template("topics.html", groups=groups)
 
 # --------------------
 # Route: Quotes Page "/quotes"
